@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This file is part of the doctrine-renew-connection package.
+ * This file is part of the renew-doctrine-connection package.
  *
  * (c) Jordi Domènech Bonilla
  *
