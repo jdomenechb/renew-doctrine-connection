@@ -41,11 +41,12 @@ class TimedRenewConnection extends \Doctrine\DBAL\Connection
         Configuration $config = null,
         EventManager $eventManager = null
     ) {
-        parent::__construct($params, $driver, $config, $eventManager);
-
         if (isset($params['secondsToRenew'])) {
             $this->secondsToRenew = (int) $params['secondsToRenew'];
+            unset($params['secondsToRenew']);
         }
+
+        parent::__construct($params, $driver, $config, $eventManager);
     }
 
     /**
