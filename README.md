@@ -33,3 +33,5 @@ doctrine:
 
 
 You can freely customize the parameter `secondsToRenew`. The database connection will be renewed only after the seconds of inactivity you specify in this parameter. If it is set to `0` or not set at all, the connection will be renewed before every operation performed to the database.
+
+For example, a good value to assign to this parameter, in MySQL, is the value of the MySQL system variable `wait_timeout`.
