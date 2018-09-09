@@ -41,9 +41,9 @@ class TimedRenewConnection extends \Doctrine\DBAL\Connection
         Configuration $config = null,
         EventManager $eventManager = null
     ) {
-        if (isset($params['secondsToRenew'])) {
-            $this->secondsToRenew = (int) $params['secondsToRenew'];
-            unset($params['secondsToRenew']);
+        if (isset($params['driverOptions']['secondsToRenew'])) {
+            $this->secondsToRenew = (int) $params['driverOptions']['secondsToRenew'];
+            unset($params['driverOptions']['secondsToRenew']);
         }
 
         parent::__construct($params, $driver, $config, $eventManager);

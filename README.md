@@ -20,15 +20,16 @@ composer require jdomenechb/renew-doctrine-connection
 
 ## Configuration
 
-Modify your Doctrine configuration to use the `TimedRenewConnection` contained in this library as the wrapper class of Doctrine.
+Modify your Doctrine configuration to use the `TimedRenewConnection` contained in this library as the wrapper class of Doctrine. In Symfony, for example, configuration will look like:
 
 ```yaml
 doctrine:
     dbal:
         # ...
         wrapper_class: 'Jdomenechb\Doctrine\DBAL\TimedRenewConnection'
-        secondsToRenew: 300
+        options:
+            secondsToRenew: 60
 ```
 
 
-You can freely customize the parameter `secondsToRenew`. The database connection will be renewed only after the seconds of inactivity you specify in this parameter. If it is set to 0 or not set at all, the connection will be renewed before every operation performed to the database.
+You can freely customize the parameter `secondsToRenew`. The database connection will be renewed only after the seconds of inactivity you specify in this parameter. If it is set to `0` or not set at all, the connection will be renewed before every operation performed to the database.
