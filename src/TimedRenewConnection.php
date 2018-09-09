@@ -13,6 +13,7 @@ namespace Jdomenechb\Doctrine\DBAL;
 
 
 use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Cache\QueryCacheProfile;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Driver;
 
@@ -73,8 +74,42 @@ class TimedRenewConnection extends \Doctrine\DBAL\Connection
             }
         }
 
+        return parent::connect();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function query()
+    {
+        $toReturn = parent::query();
+
         $this->lastUsed = time();
 
-        return parent::connect();
+        return $toReturn;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function executeQuery($query, array $params = [], $types = [], QueryCacheProfile $qcp = null)
+    {
+        $toReturn = parent::executeQuery($query, $params, $types, $qcp);
+
+        $this->lastUsed = time();
+
+        return $toReturn;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function executeUpdate($query, array $params = [], array $types = [])
+    {
+        $toReturn = parent::executeUpdate($query, $params, $types);
+
+        $this->lastUsed = time();
+
+        return $toReturn;
     }
 }
