@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * This file is part of the doctrine-renew-connection package.
  *
@@ -14,10 +12,16 @@ declare(strict_types=1);
 namespace Jdomenechb\Doctrine\DBAL;
 
 
-class Connection extends \Doctrine\DBAL\Connection
+class TimedRenewConnection extends \Doctrine\DBAL\Connection
 {
     /** @var bool */
     protected $skipConnection = false;
+
+    /** @var int */
+    protected $lastUsed;
+
+    /** @var int */
+    protected $secondsToRenew = 0;
 
     /**
      * @inheritdoc
@@ -29,7 +33,8 @@ class Connection extends \Doctrine\DBAL\Connection
             return false;
         }
 
-        if ($this->_conn) {
+        // Check if it needs to be renewed
+        if ($this->_conn && $this->lastUsed + $this->secondsToRenew < time()) {
             // Ping the database
             $this->skipConnection = true;
             $ping = $this->ping();
@@ -41,6 +46,8 @@ class Connection extends \Doctrine\DBAL\Connection
                 $this->connect();
             }
         }
+
+        $this->lastUsed = time();
 
         return parent::connect();
     }

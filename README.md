@@ -23,6 +23,6 @@ composer require jdomenechb/doctrine-renew-connection
 doctrine:
     dbal:
         # ...
-        wrapper_class: 'Jdomenechb\Doctrine\DBAL\Connection'
+        wrapper_class: 'Jdomenechb\Doctrine\DBAL\TimedRenewConnection'
 
 ```
