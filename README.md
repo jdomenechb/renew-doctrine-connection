@@ -1,6 +1,6 @@
 # Renew Doctrine Connection
 
-This library eases the process of renewing an existing Doctrine connection in your application that has been closed due to a timeout from the server. This might happen when the connection expires or the server has become unavailable.
+This library eases the process of renewing an existing [Doctrine](https://www.doctrine-project.org/) connection in your application that has been closed due to a timeout from the server. This might happen when the connection expires or the server has become unavailable.
 
 When the connection is lost, the application usually throws an error like (in MySQL):
 
@@ -12,7 +12,7 @@ It is recommended to install this library only in daemons, consumers, PHP-only s
 
 ## Installation
 
-Add this library to your project using Composer:
+Add this library to your project using [Composer](https://getcomposer.org/):
 
 ``` bash
 composer require jdomenechb/renew-doctrine-connection
