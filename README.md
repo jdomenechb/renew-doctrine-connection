@@ -20,7 +20,7 @@ composer require jdomenechb/renew-doctrine-connection
 
 ## Configuration
 
-Modify your Doctrine configuration to use the `TimedRenewClass` contained in this library as the wrapper class of Doctrine.
+Modify your Doctrine configuration to use the `TimedRenewConection` contained in this library as the wrapper class of Doctrine.
 
 ```yaml
 doctrine:
