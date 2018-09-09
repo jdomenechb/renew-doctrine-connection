@@ -80,9 +80,9 @@ class TimedRenewConnection extends \Doctrine\DBAL\Connection
     /**
      * @inheritdoc
      */
-    public function query()
+    public function query(...$args)
     {
-        $toReturn = parent::query();
+        $toReturn = parent::query(...$args);
 
         $this->lastUsed = time();
 
