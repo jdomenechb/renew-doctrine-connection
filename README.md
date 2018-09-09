@@ -14,7 +14,7 @@ It is recommended to install this library only in daemons, consumers, PHP-only s
 
 Add this library to your project using Composer:
 
-```
+``` bash
 composer require jdomenechb/renew-doctrine-connection
 ```
 
@@ -22,13 +22,12 @@ composer require jdomenechb/renew-doctrine-connection
 
 Modify your Doctrine configuration to use the `TimedRenewClass` contained in this library as the wrapper class of Doctrine.
 
-```
+```yaml
 doctrine:
     dbal:
         # ...
         wrapper_class: 'Jdomenechb\Doctrine\DBAL\TimedRenewConnection'
         secondsToRenew: 300
-
 ```
 
 
