@@ -1,0 +1,19 @@
+{
+    "name": "jdomenechb/doctrine-renew-connection",
+    "description": "Renews Doctrine DBAL connections that have been closed or timed out.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jordi Domènech Bonilla",
+            "email": "jdomenechbborges@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "doctrine/dbal": "^2.5"
+    },
+    "autoload": {
+        "Jdomenechb\\Doctrine\\DBAL\\": "src/"
+    }
+}
