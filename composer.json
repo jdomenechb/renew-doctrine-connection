@@ -1,5 +1,5 @@
 {
-    "name": "jdomenechb/doctrine-renew-connection",
+    "name": "jdomenechb/renew-doctrine-connection",
     "description": "Renews Doctrine DBAL connections that have been closed or timed out.",
     "type": "library",
     "license": "MIT",

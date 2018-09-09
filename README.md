@@ -1,8 +1,8 @@
-# Doctrine Renew Connection
+# Renew Doctrine Connection
 
 This library eases the process of renewing an existing Doctrine connection in your application that has been closed due to a timeout from the server. This might happen when the connection expires or the server has become unavailable.
 
-When the connection is lost, the application usually throws an error like:
+When the connection is lost, the application usually throws an error like (in MySQL):
 
 ```
 SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
@@ -12,17 +12,24 @@ It is recommended to install this library only in daemons, consumers, PHP-only s
 
 ## Installation
 
-1. Add this library to your project using Composer:
+Add this library to your project using Composer:
+
 ```
-composer require jdomenechb/doctrine-renew-connection
+composer require jdomenechb/renew-doctrine-connection
 ```
 
-2. Modify your Doctrine configuration to use the class in the library as the wrapper class of Doctrine.
+## Configuration
+
+Modify your Doctrine configuration to use the `TimedRenewClass` contained in this library as the wrapper class of Doctrine.
 
 ```
 doctrine:
     dbal:
         # ...
         wrapper_class: 'Jdomenechb\Doctrine\DBAL\TimedRenewConnection'
+        secondsToRenew: 300
 
 ```
+
+
+You can freely customize the parameter `secondsToRenew`. The database connection will be renewed only after the seconds of inactivity you specify in this parameter. If it is set to 0 or not set at all, the connection will be renewed before every operation performed to the database.

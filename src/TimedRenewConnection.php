@@ -12,6 +12,10 @@
 namespace Jdomenechb\Doctrine\DBAL;
 
 
+use Doctrine\Common\EventManager;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\Driver;
+
 class TimedRenewConnection extends \Doctrine\DBAL\Connection
 {
     /** @var bool */
@@ -22,6 +26,27 @@ class TimedRenewConnection extends \Doctrine\DBAL\Connection
 
     /** @var int */
     protected $secondsToRenew = 0;
+
+    /**
+     * TimedRenewConnection constructor.
+     * @param array $params
+     * @param Driver $driver
+     * @param Configuration|null $config
+     * @param EventManager|null $eventManager
+     * @throws \Doctrine\DBAL\DBALException
+     */
+    public function __construct(
+        array $params,
+        Driver $driver,
+        Configuration $config = null,
+        EventManager $eventManager = null
+    ) {
+        parent::__construct($params, $driver, $config, $eventManager);
+
+        if (isset($params['secondsToRenew'])) {
+            $this->secondsToRenew = (int) $params['secondsToRenew'];
+        }
+    }
 
     /**
      * @inheritdoc
